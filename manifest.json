@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "PageProof – Spelling & Grammar Checker",
+  "short_name": "PageProof",
+  "version": "1.0.0",
+  "description": "Scan any webpage for spelling, grammar, punctuation and style mistakes and see them highlighted in place.",
+  "minimum_chrome_version": "105",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "PageProof",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://api.languagetool.org/*",
+    "https://api.languagetoolplus.com/*"
+  ],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*.woff2"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+P" },
+      "description": "Open PageProof"
+    }
+  }
+}

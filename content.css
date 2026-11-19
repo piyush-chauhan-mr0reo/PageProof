@@ -1,0 +1,41 @@
+/* PageProof – in-page highlight styles (CSS Custom Highlight API).
+   These rules only style PageProof's named highlights; they cannot affect
+   any of the page's own elements. */
+
+::highlight(pageproof-spelling) {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #e5484d;
+  text-decoration-thickness: 1.5px;
+  text-decoration-skip-ink: none;
+}
+
+::highlight(pageproof-grammar) {
+  background-color: rgba(229, 72, 77, 0.12);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: #e5484d;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+}
+
+::highlight(pageproof-punctuation) {
+  background-color: rgba(229, 72, 77, 0.16);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: #e5484d;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+}
+
+::highlight(pageproof-style) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: #7c5cff;
+  text-decoration-thickness: 1.5px;
+  text-decoration-skip-ink: none;
+}
+
+::highlight(pageproof-active) {
+  background-color: rgba(229, 72, 77, 0.28);
+}

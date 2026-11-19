@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PageProof Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <img src="icons/icon128.png" alt="" width="48" height="48">
+      <div>
+        <h1>PageProof Settings</h1>
+        <p>Spelling &amp; grammar checking for any webpage.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Checking</h2>
+      <div class="field">
+        <label for="language">Language</label>
+        <select id="language">
+          <option value="auto">Auto-detect</option>
+          <option value="en-US">English (US)</option>
+          <option value="en-GB">English (UK)</option>
+          <option value="en-AU">English (Australia)</option>
+          <option value="en-CA">English (Canada)</option>
+          <option value="en-NZ">English (New Zealand)</option>
+          <option value="en-ZA">English (South Africa)</option>
+          <option value="de-DE">German (Germany)</option>
+          <option value="de-AT">German (Austria)</option>
+          <option value="de-CH">German (Switzerland)</option>
+          <option value="fr">French</option>
+          <option value="es">Spanish</option>
+          <option value="it">Italian</option>
+          <option value="pt-PT">Portuguese (Portugal)</option>
+          <option value="pt-BR">Portuguese (Brazil)</option>
+          <option value="nl">Dutch</option>
+          <option value="pl-PL">Polish</option>
+          <option value="sv">Swedish</option>
+          <option value="da-DK">Danish</option>
+          <option value="ca-ES">Catalan</option>
+          <option value="uk-UA">Ukrainian</option>
+          <option value="ru-RU">Russian</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="preferredVariants">English variant when auto-detecting</label>
+        <select id="preferredVariants">
+          <option value="en-US">American English</option>
+          <option value="en-GB">British English</option>
+          <option value="en-AU">Australian English</option>
+          <option value="en-CA">Canadian English</option>
+          <option value="en-NZ">New Zealand English</option>
+          <option value="en-ZA">South African English</option>
+        </select>
+        <small>If the page declares a regional variant (e.g. <code>lang="en-GB"</code>), that is used instead.</small>
+      </div>
+      <label class="check"><input type="checkbox" id="pickyMode"> <span><strong>Picky mode</strong> – extra style and punctuation suggestions</span></label>
+    </section>
+
+    <section class="card">
+      <h2>Grammar service</h2>
+      <div class="radios">
+        <label class="radio"><input type="radio" name="apiMode" value="public"> <span><strong>LanguageTool public API</strong><small>Free. Limited to about 20 requests and 75 KB of text per minute – long pages are checked in paced chunks.</small></span></label>
+        <label class="radio"><input type="radio" name="apiMode" value="premium"> <span><strong>LanguageTool Premium</strong><small>Higher limits and more checks with your LanguageTool account.</small></span></label>
+        <label class="radio"><input type="radio" name="apiMode" value="custom"> <span><strong>Custom / self-hosted server</strong><small>e.g. a local LanguageTool server. Nothing leaves your network.</small></span></label>
+      </div>
+      <div class="sub" id="premiumFields">
+        <div class="field"><label for="premiumUsername">LanguageTool username (email)</label><input id="premiumUsername" type="email" autocomplete="off"></div>
+        <div class="field"><label for="premiumApiKey">API key</label><input id="premiumApiKey" type="password" autocomplete="off"></div>
+      </div>
+      <div class="sub" id="customFields">
+        <div class="field"><label for="customApiUrl">Server check URL</label><input id="customApiUrl" type="url" placeholder="http://localhost:8081/v2/check"><small>Chrome will ask permission to contact this server when you save.</small></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Scanning</h2>
+      <label class="check"><input type="checkbox" id="dynamicScanning"> <span><strong>Live scanning</strong> – check content that loads after the first scan (debounced, incremental)</span></label>
+      <label class="check"><input type="checkbox" id="skipNavigation"> <span><strong>Skip navigation</strong> – ignore menus, breadcrumbs, toolbars and buttons</span></label>
+      <label class="check"><input type="checkbox" id="ignoreBrandLikeWords"> <span><strong>Ignore brand-like words</strong> – don’t flag spellings such as “WordPress”, “SEO” or “iOS”</span></label>
+      <label class="check"><input type="checkbox" id="highlightsEnabled"> <span><strong>Show highlights</strong> on the page</span></label>
+      <div class="field">
+        <label for="maxPageChars">Maximum text checked per page</label>
+        <select id="maxPageChars">
+          <option value="60000">60,000 characters (fastest)</option>
+          <option value="120000">120,000 characters</option>
+          <option value="250000">250,000 characters (default)</option>
+          <option value="500000">500,000 characters</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Personal dictionary</h2>
+      <p class="hint">Words here are never flagged as spelling mistakes. You can also add words from the correction card.</p>
+      <form class="adder" data-list="personalDictionary"><input placeholder="Add a word…" maxlength="80"><button class="btn">Add</button></form>
+      <ul class="chips" id="list-personalDictionary"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Ignored words</h2>
+      <p class="hint">Any suggestion on these exact words (spelling, grammar or style) is hidden.</p>
+      <form class="adder" data-list="ignoredWords"><input placeholder="Add a word or phrase…" maxlength="80"><button class="btn">Add</button></form>
+      <ul class="chips" id="list-ignoredWords"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Ignored rules</h2>
+      <p class="hint">Rules you switched off with “Ignore rule” on the correction card.</p>
+      <ul class="chips" id="list-ignoredRules"></ul>
+    </section>
+
+    <section class="card privacy">
+      <h2>Privacy</h2>
+      <ul>
+        <li>PageProof runs only when you click <strong>Scan This Page</strong>, and only in that tab.</li>
+        <li>Readable page text is sent to the grammar service selected above, split into small chunks. Identical blocks are sent once.</li>
+        <li>Form fields, password fields, editable regions, code blocks and hidden content are never read.</li>
+        <li>Page text is never stored. Only your settings, dictionary and ignore lists are saved, in this browser.</li>
+        <li>See LanguageTool’s privacy policy at <a href="https://languagetool.org/legal/privacy" target="_blank" rel="noopener">languagetool.org/legal/privacy</a>.</li>
+      </ul>
+    </section>
+
+    <div class="savebar">
+      <span id="saveStatus" role="status"></span>
+      <button class="btn primary" id="saveBtn">Save settings</button>
+    </div>
+  </main>
+  <script src="settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
